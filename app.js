@@ -5,6 +5,7 @@ const passport = require("passport");
 require("./config/passport")(passport);
 
 const app = express();
+const indexRouter = require("./routes/indexRouter");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -22,6 +23,8 @@ app.use(
   }),
 );
 app.use(passport.session());
+
+app.use("/", indexRouter);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, (error) => {
