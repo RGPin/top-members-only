@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Haru warudo</h1>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recent Posts</title>
+  <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+  <main class="feed-container">
+    <h1>Recent Posts</h1>
+    
+    <% if (posts.length === 0) { %>
+      <p class="no-posts">No posts to display yet!</p>
+    <% } else { %>
+      <ul class="posts-list">
+        <% posts.forEach(post => { %>
+          <li class="post-card">
+            
+            <div class="post-header">
+              <strong class="author-name">
+                <%= post.firstname %> <%= post.lastname %>
+              </strong>
+              <span class="author-username">@<%= post.username %></span>
+            </div>
+
+            <p class="post-content"><%= post.content %></p>
+
+            <div class="post-footer">
+              <time datetime="<%= post.created_at %>">
+                <%= new Date(post.created_at).toLocaleDateString('en-US', { 
+                  month: 'short', 
+                  day: 'numeric', 
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                }) %>
+              </time>
+            </div>
+
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </main>
+</body>
 </html>

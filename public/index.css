@@ -1,0 +1,49 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.feed-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-card {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.post-header {
+  margin-bottom: 0.5rem;
+}
+
+.author-name {
+  color: #111;
+}
+
+.author-username {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+.post-footer {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.75rem;
+}

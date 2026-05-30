@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --env-file=.env db/queries.js",
     "populate": "node --env-file=.env db/populate.js",
     "dev": "node --env-file=.env --watch app.js"
   },
