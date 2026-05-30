@@ -7,16 +7,7 @@
   <link rel="stylesheet" href="/index.css" />
 </head>
 <body>
-  <header class="main-header">
-    <div class="header-container">
-      <a href="/" class="logo">🚀 MiniSocial</a>
-      <nav class="nav-links">
-        <a href="/posts/new" class="btn btn-primary">Create Post</a>
-        <a href="/login" class="btn btn-secondary">Log In</a>
-        <a href="/signup" class="btn btn-secondary">Sign Up</a>
-      </nav>
-    </div>
-  </header>
+  <%- include("partials/header.ejs") %>
 
   <main class="feed-container">
     <h2>Recent Posts</h2>
@@ -31,10 +22,15 @@
               <article class="post-card">
                 
                 <div class="post-header">
-                  <strong class="author-name">
-                    <%= post.firstname %> <%= post.lastname %>
-                  </strong>
-                  <span class="author-username">@<%= post.username %></span>
+                  <!-- Conditional Username and Full Name Logic -->
+                  <% if (locals.currentUser) { %>
+                    <strong class="author-name">
+                      <%= post.firstname %> <%= post.lastname %>
+                    </strong>
+                    <span class="author-username">@<%= post.username %></span>
+                  <% } else { %>
+                    <strong class="author-name text-muted">Anonymous</strong>
+                  <% } %>
                 </div>
 
                 <p class="post-content"><%= post.content %></p>

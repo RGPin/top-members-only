@@ -1,0 +1,29 @@
+<!-- <header class="main-header">
+  <div class="header-container">
+    <a href="/" class="logo">🚀 MiniSocial</a>
+    <nav class="nav-links">
+      <a href="/" class="btn btn-secondary">← Back to Feed</a> display only when postDetails.ejs
+      <a href="/posts/new" class="btn btn-primary">Create Post</a>
+      <a href="/login" class="btn btn-secondary">Log In</a>
+      <a href="/signup" class="btn btn-secondary">Sign Up</a>
+    </nav>
+  </div>
+</header> -->
+
+<header class="main-header">
+  <div class="header-container">
+    <a href="/" class="logo">🚀 MiniSocial</a>
+    <!-- Example logic inside your main navigation header -->
+    <nav class="nav-links">
+      <% if (currentUser) { %>
+        <span>Welcome, <strong><%= currentUser.firstname %></strong>!</span>
+        <a href="/posts/new" class="btn btn-primary">Create Post</a>
+        <a href="/logout" class="btn btn-secondary">Log Out</a>
+      <% } else { %>
+        <a href="/login" class="btn btn-secondary">Log In</a>
+        <a href="/signup" class="btn btn-secondary">Sign Up</a>
+      <% } %>
+    </nav>
+  </div>
+</header>
+

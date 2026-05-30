@@ -7,18 +7,19 @@
   <link rel="stylesheet" href="/index.css" />
 </head>
 <body>
-  <header class="main-header">
-    <div class="header-container">
-      <a href="/" class="logo">🚀 MiniSocial</a>
-      <a href="/" class="btn btn-secondary">← Back to Feed</a>
-    </div>
-  </header>
+  <%- include("partials/header.ejs") %>
 
   <main class="feed-container">
     <article class="post-card detail-card">
       <div class="post-header">
-        <strong class="author-name"><%= post.firstname %> <%= post.lastname %></strong>
-        <span class="author-username">@<%= post.username %></span>
+        <% if (locals.currentUser) { %>
+          <strong class="author-name">
+            <%= post.firstname %> <%= post.lastname %>
+          </strong>
+          <span class="author-username">@<%= post.username %></span>
+        <% } else { %>
+          <strong class="author-name text-muted">Anonymous</strong>
+        <% } %>
       </div>
 
       <p class="post-content-large"><%= post.content %></p>
