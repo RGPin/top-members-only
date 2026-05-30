@@ -17,6 +17,13 @@ async function getPostsFromDb(req, res) {
 
 async function getLoginForm(req, res) {
   try {
+    if (req.user) return res.redirect("/");
+    res.setHeader(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate, private",
+    );
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
     res.render("login");
   } catch (error) {
     console.error(`getLoginForm failed: ${error.message}`);
