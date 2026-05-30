@@ -7,37 +7,51 @@
   <link rel="stylesheet" href="/index.css" />
 </head>
 <body>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="/" class="logo">🚀 MiniSocial</a>
+      <nav class="nav-links">
+        <a href="/posts/new" class="btn btn-primary">Create Post</a>
+        <a href="/login" class="btn btn-secondary">Log In</a>
+        <a href="/signup" class="btn btn-secondary">Sign Up</a>
+      </nav>
+    </div>
+  </header>
+
   <main class="feed-container">
-    <h1>Recent Posts</h1>
+    <h2>Recent Posts</h2>
     
     <% if (posts.length === 0) { %>
       <p class="no-posts">No posts to display yet!</p>
     <% } else { %>
       <ul class="posts-list">
         <% posts.forEach(post => { %>
-          <li class="post-card">
-            
-            <div class="post-header">
-              <strong class="author-name">
-                <%= post.firstname %> <%= post.lastname %>
-              </strong>
-              <span class="author-username">@<%= post.username %></span>
-            </div>
+          <li>
+            <a href="/posts/<%= post.id %>" class="post-card-link">
+              <article class="post-card">
+                
+                <div class="post-header">
+                  <strong class="author-name">
+                    <%= post.firstname %> <%= post.lastname %>
+                  </strong>
+                  <span class="author-username">@<%= post.username %></span>
+                </div>
 
-            <p class="post-content"><%= post.content %></p>
+                <p class="post-content"><%= post.content %></p>
 
-            <div class="post-footer">
-              <time datetime="<%= post.created_at %>">
-                <%= new Date(post.created_at).toLocaleDateString('en-US', { 
-                  month: 'short', 
-                  day: 'numeric', 
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                }) %>
-              </time>
-            </div>
+                <div class="post-footer">
+                  <time datetime="<%= post.created_at %>">
+                    <%= new Date(post.created_at).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      day: 'numeric', 
+                      year: 'numeric'
+                    }) %>
+                  </time>
+                  <span class="view-thread">Click to view thread →</span>
+                </div>
 
+              </article>
+            </a>
           </li>
         <% }) %>
       </ul>

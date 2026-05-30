@@ -6,6 +6,7 @@ require("./config/passport")(passport);
 
 const app = express();
 const indexRouter = require("./routes/indexRouter");
+const postsRouter = require("./routes/postsRouter");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -26,6 +27,7 @@ app.use(
 app.use(passport.session());
 
 app.use("/", indexRouter);
+app.use("/posts", postsRouter);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, (error) => {
