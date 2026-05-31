@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-container">
+      <a href="/" class="logo">🚀 MiniSocial</a>
+      <a href="/" class="btn btn-secondary">← Back to Feed</a>
+    </div>
+  </header>
+
+  <main class="form-container">
+    <div class="form-card post-form-card">
+      <h2>Create a New Post</h2>
+      <p class="form-subtitle">What's on your mind, <%= currentUser ? currentUser.firstname : 'friend' %>?</p>
+
+      <% if (locals.error) { %>
+        <div class="alert-danger">
+          ⚠️ <%= error %>
+        </div>
+      <% } %>
+
+      <form action="/posts/new" method="POST" class="auth-form">
+        <input type="hidden" name="user_id" value="<%= currentUser ? currentUser.id : '' %>" />
+
+        <div class="form-group">
+          <label for="content">Your Post</label>
+          <textarea 
+            id="content" 
+            name="content" 
+            rows="5" 
+            maxlength="280" 
+            placeholder="Share an idea, ask a question, or talk about code..." 
+            required
+            autofocus
+          ></textarea>
+          
+          <div class="char-counter">
+            <span id="char-count">0</span> / 280 characters
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Publish Post 🚀</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const textarea = document.getElementById('content');
+    const counter = document.getElementById('char-count');
+
+    textarea.addEventListener('input', () => {
+      const currentLength = textarea.value.length;
+      counter.textContent = currentLength;
+      
+      if (currentLength >= 250) {
+        counter.style.color = '#e11d48';
+        counter.style.fontWeight = 'bold';
+      } else {
+        counter.style.color = '#666';
+        counter.style.fontWeight = 'normal';
+      }
+    });
+  </script>
+</body>
+</html>

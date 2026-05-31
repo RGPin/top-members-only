@@ -20,6 +20,17 @@ async function getPostDetails(req, res) {
   }
 }
 
+async function getCreatePostForm(req, res) {
+  try {
+    if (!req.user) return res.redirect("/login");
+    res.render("createPost");
+  } catch (error) {
+    console.error(`getCreatePostForm failed: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   getPostDetails,
+  getCreatePostForm,
 };
