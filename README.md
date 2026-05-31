@@ -1,3 +1,5 @@
 # top-members-only
 
-just make app work for now. authentication later
+// add /posts/delete
+// add /profile
+// add comments function
