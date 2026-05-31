@@ -30,7 +30,29 @@ async function getCreatePostForm(req, res) {
   }
 }
 
+async function postCreatePostForm(req, res) {
+  try {
+    const { content, user_id } = req.body;
+    if (content.length > 280) {
+      return res.render("createPost", {
+        error: "Exceeded max character count",
+      });
+    }
+    const newPost = await db.addPost(content, user_id);
+    if (!newPost) {
+      return res.render("createPost", {
+        error: "Post failed. Please try again.",
+      });
+    }
+    res.redirect("/");
+  } catch (error) {
+    console.error(`getCreatePostForm failed: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   getPostDetails,
   getCreatePostForm,
+  postCreatePostForm,
 };

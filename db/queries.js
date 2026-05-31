@@ -1,3 +1,4 @@
+const { use } = require("passport");
 const pool = require("./pool");
 
 async function getPosts() {
@@ -61,7 +62,7 @@ async function addUser(firstname, lastname, username, password) {
       `
       INSERT INTO users (firstname, lastname, username, password)
       VALUES ($1, $2, $3, $4)
-      RETURNING *;
+      RETURNING username;
       `,
       [firstname, lastname, username, password],
     );
@@ -72,8 +73,26 @@ async function addUser(firstname, lastname, username, password) {
   }
 }
 
+async function addPost(content, user_id) {
+  try {
+    const { rows } = await pool.query(
+      `
+      INSERT INTO posts (content, user_id)
+      VALUES ($1, $2)
+      RETURNING user_id;
+      `,
+      [content, user_id],
+    );
+    return rows[0] || null;
+  } catch (error) {
+    console.error(`addPost failed: ${error.message}`);
+    throw error;
+  }
+}
+
 module.exports = {
   getPosts,
   getPostDetailById,
   addUser,
+  addPost,
 };
