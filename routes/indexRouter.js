@@ -7,5 +7,6 @@ indexRouter.get("/login", controller.getLoginForm);
 indexRouter.post("/login", controller.postLoginForm);
 indexRouter.get("/logout", controller.postLogout);
 indexRouter.get("/signup", controller.getSignUpForm);
+indexRouter.post("/signup", controller.postSignUpForm);
 
 module.exports = indexRouter;

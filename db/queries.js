@@ -55,7 +55,25 @@ async function getPostDetailById(id) {
   }
 }
 
+async function addUser(firstname, lastname, username, password) {
+  try {
+    const { rows } = await pool.query(
+      `
+      INSERT INTO users (firstname, lastname, username, password)
+      VALUES ($1, $2, $3, $4)
+      RETURNING *;
+      `,
+      [firstname, lastname, username, password],
+    );
+    return rows[0] || null;
+  } catch (error) {
+    console.error(`addUser failed: ${error.message}`);
+    throw error;
+  }
+}
+
 module.exports = {
   getPosts,
   getPostDetailById,
+  addUser,
 };
