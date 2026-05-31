@@ -46,7 +46,20 @@ async function postCreatePostForm(req, res) {
     }
     res.redirect("/");
   } catch (error) {
-    console.error(`getCreatePostForm failed: ${error.message}`);
+    console.error(`postCreatePostForm failed: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+}
+
+async function postDeletePost(req, res) {
+  try {
+    const deletedPost = await db.deletePostById(req.params.id);
+    if (!deletedPost) {
+      alert("Failed to delete post. My bad.");
+    }
+    res.redirect("/");
+  } catch (error) {
+    console.error(`postDeletePost failed: ${error.message}`);
     res.status(500).json({ error: error.message });
   }
 }
@@ -55,4 +68,5 @@ module.exports = {
   getPostDetails,
   getCreatePostForm,
   postCreatePostForm,
+  postDeletePost,
 };

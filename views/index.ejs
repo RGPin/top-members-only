@@ -17,12 +17,20 @@
     <% } else { %>
       <ul class="posts-list">
         <% posts.forEach(post => { %>
-          <li>
+          <li class="post-item-wrapper">
+            
+            <% if (locals.currentUser && currentUser.username === post.username) { %>
+              <form action="/posts/<%= post.id %>/delete" method="POST" class="delete-post-form">
+                <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this post? 🥺');">
+                  🗑️ Delete
+                </button>
+              </form>
+            <% } %>
+
             <a href="/posts/<%= post.id %>" class="post-card-link">
               <article class="post-card">
                 
                 <div class="post-header">
-                  <!-- Conditional Username and Full Name Logic -->
                   <% if (locals.currentUser) { %>
                     <strong class="author-name">
                       <%= post.firstname %> <%= post.lastname %>
@@ -48,6 +56,7 @@
 
               </article>
             </a>
+
           </li>
         <% }) %>
       </ul>

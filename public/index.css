@@ -280,3 +280,36 @@ body {
   color: #666;
   margin-top: 0.4rem;
 }
+
+/* Wrapper to hold both the full-card link and the floating delete button */
+.post-item-wrapper {
+  position: relative;
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+/* Position the form inside the top-right corner of the card */
+.delete-post-form {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 10; /* Forces button to sit on top of the main <a> link click zone */
+}
+
+/* Sleek delete button style */
+.btn-delete {
+  background: none;
+  border: none;
+  color: #e11d48;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-delete:hover {
+  background-color: #fff1f2;
+  transform: scale(1.05);
+}

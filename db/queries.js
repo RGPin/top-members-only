@@ -90,9 +90,31 @@ async function addPost(content, user_id) {
   }
 }
 
+async function deletePostById(id) {
+  const postId = Number(id);
+  if (isNaN(postId)) {
+    throw new TypeError(`getPostDetailById failed: id must be number`);
+  }
+  try {
+    const { rows } = await pool.query(
+      `
+      DELETE FROM posts
+      WHERE id = $1
+      RETURNING *;
+      `,
+      [postId],
+    );
+    return rows[0] || null;
+  } catch (error) {
+    console.error(`addPost failed: ${error.message}`);
+    throw error;
+  }
+}
+
 module.exports = {
   getPosts,
   getPostDetailById,
   addUser,
   addPost,
+  deletePostById,
 };
