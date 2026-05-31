@@ -3,3 +3,4 @@
 // add /posts/delete
 // add /profile
 // add comments function
+// add form validations (express-validator)
