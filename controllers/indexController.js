@@ -55,9 +55,19 @@ async function postLogout(req, res, next) {
   });
 }
 
+async function getSignUpForm(req, res) {
+  try {
+    res.render("signup");
+  } catch (error) {
+    console.error(`getLoginForm failed: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   getPostsFromDb,
   getLoginForm,
   postLoginForm,
   postLogout,
+  getSignUpForm,
 };
