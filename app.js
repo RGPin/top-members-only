@@ -37,6 +37,10 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/posts", postsRouter);
 
+app.get("/api/ping", (req, res) => {
+  res.sendStatus(200);
+});
+
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, (error) => {
   if (error) {
