@@ -3,10 +3,17 @@ const path = require("node:path");
 const session = require("express-session");
 const passport = require("passport");
 require("./config/passport")(passport);
+const cors = require("cors");
 
 const app = express();
 const indexRouter = require("./routes/indexRouter");
 const postsRouter = require("./routes/postsRouter");
+
+app.use(
+  cors({
+    origin: "https://rgpin.github.io/portfolio-v2",
+  }),
+);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
