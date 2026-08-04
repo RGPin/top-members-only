@@ -11,7 +11,7 @@ const postsRouter = require("./routes/postsRouter");
 
 app.use(
   cors({
-    origin: "https://rgpin.github.io/portfolio-v2",
+    origin: "https://rgpin.github.io",
   }),
 );
 
